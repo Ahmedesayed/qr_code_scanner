@@ -7,11 +7,11 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/.pub-cache/git/flutter-share-4833037478e3e0394ce0826267494f7448f29234/android" />
-            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/barcode_scan-0.0.4/android" />
-            <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/path_provider-0.4.1/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$USER_HOME$/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/barcode_scan-1.0.0/android" />
+            <option value="$USER_HOME$/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/image_gallery_saver-1.1.0/android" />
+            <option value="$USER_HOME$/Downloads/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-0.4.1/android" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

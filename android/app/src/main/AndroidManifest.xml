@@ -7,6 +7,7 @@
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
@@ -42,7 +43,7 @@
         </activity>
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="me.alfian.share"
             android:exported="false"
             android:grantUriPermissions="true">

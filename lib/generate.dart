@@ -7,6 +7,7 @@ import 'dart:ui';
 import 'dart:io';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class GenerateScreen extends StatefulWidget {
   @override
@@ -32,6 +33,10 @@ class GenerateScreenState extends State<GenerateScreen> {
           IconButton(
             icon: Icon(Icons.share),
             onPressed: _captureAndSharePng,
+          ),
+           IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {_save(context);},
           )
         ],
       ),
@@ -58,6 +63,29 @@ class GenerateScreenState extends State<GenerateScreen> {
     }
   }
 
+  Future<void> _save(BuildContext context) async{
+  try {
+      RenderRepaintBoundary boundary = globalKey.currentContext.findRenderObject();
+      var image = await boundary.toImage();
+      ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
+      Uint8List pngBytes = byteData.buffer.asUint8List();
+      final result = await ImageGallerySaver.save(pngBytes);
+      // result ? this._showToast(context,'Saved') : this._showToast(context,'Not Saved') ;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+//  void _showToast(BuildContext context , String text) {
+//     final scaffold = Scaffold.of(context,nullOk:false);
+//     scaffold.showSnackBar(
+//       SnackBar(
+//         content:  Text(text),
+//         action: SnackBarAction(
+//             label: 'Ok', onPressed: scaffold.hideCurrentSnackBar),
+//       ),
+//     );
+//   }
   _contentWidget() {
     final bodyHeight = MediaQuery.of(context).size.height -
         MediaQuery.of(context).viewInsets.bottom;

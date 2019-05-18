@@ -7,8 +7,9 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   path_provider: 0.4.1
-  barcode_scan: ^0.0.4
+  barcode_scan: 1.0.0
   qr_flutter: ^1.1.1
+  image_gallery_saver: ^1.1.0
 
 
 dev_dependencies:
