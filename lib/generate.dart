@@ -8,6 +8,7 @@ import 'dart:io';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class GenerateScreen extends StatefulWidget {
   @override
@@ -46,6 +47,7 @@ class GenerateScreenState extends State<GenerateScreen> {
 
   Future<void> _captureAndSharePng() async {
     try {
+   
       RenderRepaintBoundary boundary =
           globalKey.currentContext.findRenderObject();
       var image = await boundary.toImage();
@@ -58,6 +60,7 @@ class GenerateScreenState extends State<GenerateScreen> {
 
       final channel = const MethodChannel('channel:me.alfian.share/share');
       channel.invokeMethod('shareFile', 'image.png');
+      
     } catch (e) {
       print(e.toString());
     }
@@ -65,12 +68,14 @@ class GenerateScreenState extends State<GenerateScreen> {
 
   Future<void> _save(BuildContext context) async{
   try {
+       Map<PermissionGroup, PermissionStatus> permission = await PermissionHandler().requestPermissions([PermissionGroup.storage]);
+      if(permission[PermissionGroup.storage].value == 2){
       RenderRepaintBoundary boundary = globalKey.currentContext.findRenderObject();
       var image = await boundary.toImage();
       ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
       Uint8List pngBytes = byteData.buffer.asUint8List();
       final result = await ImageGallerySaver.save(pngBytes);
-      // result ? this._showToast(context,'Saved') : this._showToast(context,'Not Saved') ;
+      }
     } catch (e) {
       print(e.toString());
     }
